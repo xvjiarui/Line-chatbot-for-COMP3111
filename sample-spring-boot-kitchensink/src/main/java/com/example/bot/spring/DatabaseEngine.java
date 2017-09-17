@@ -42,7 +42,7 @@ public class DatabaseEngine {
 				int index = text.toLowerCase().indexOf(parts[0].toLowerCase());
 				if (index != -1)
 				{
-					result = text.replace(parts[0].toLowerCase(), parts[1]);
+					result = parts[1];
 				}
 			}
 		} catch (IOException e) {

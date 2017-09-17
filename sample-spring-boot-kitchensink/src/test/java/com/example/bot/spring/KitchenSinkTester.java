@@ -106,7 +106,7 @@ public class KitchenSinkTester {
 		assertThat(!thrown);
 		if (result != null) 
 		{
-			assertThat(result.equals("juxat def"));
+			assertThat(result.equals("def"));
 		}
 	}
 }
