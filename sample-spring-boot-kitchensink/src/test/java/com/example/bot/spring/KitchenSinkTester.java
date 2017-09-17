@@ -79,6 +79,22 @@ public class KitchenSinkTester {
 	}
 	
 	@Test
+	public void testFound2() throws Exception {
+		boolean thrown = false;
+		String result = null;
+		try {
+			result = this.databaseEngine.search("Hi");
+		} catch (Exception e) {
+			thrown = true;
+		}
+		assertThat(!thrown);
+		if (result != null) 
+		{
+			assertThat(result.equals("Hey, how things going?"));
+		}
+	}
+	
+	@Test
 	public void testReplace() throws Exception {
 		boolean thrown = false;
 		String result = null;
