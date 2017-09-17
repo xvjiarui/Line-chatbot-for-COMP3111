@@ -36,8 +36,13 @@ public class DatabaseEngine {
 			
 			while (result != null && (sCurrentLine = br.readLine()) != null) {
 				String[] parts = sCurrentLine.split(":");
-				if (text.toLowerCase().equals(parts[0].toLowerCase())) {
-					result = parts[1];
+//				if (text.toLowerCase().equals(parts[0].toLowerCase())) {
+//					result = parts[1];
+//				}
+				int index = text.toLowerCase().indexOf(parts[0].toLowerCase());
+				if (index != -1)
+				{
+					result = text.replace(parts[0].toLowerCase(), parts[1]);
 				}
 			}
 		} catch (IOException e) {

@@ -72,6 +72,25 @@ public class KitchenSinkTester {
 			thrown = true;
 		}
 		assertThat(!thrown);
-		assertThat(result.equals("def"));
+		if (result != null) 
+		{
+			assertThat(result.equals("def"));
+		}
+	}
+	
+	@Test
+	public void testReplace() throws Exception {
+		boolean thrown = false;
+		String result = null;
+		try {
+			result = this.databaseEngine.search("jxuat abc");
+		} catch (Exception e) {
+			thrown = true;
+		}
+		assertThat(!thrown);
+		if (result != null) 
+		{
+			assertThat(result.equals("juxat def"));
+		}
 	}
 }
