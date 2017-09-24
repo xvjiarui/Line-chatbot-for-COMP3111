@@ -43,23 +43,24 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import com.example.bot.spring.DatabaseEngine;
-
+import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { KitchenSinkTester.class, DatabaseEngine.class })
+//@SpringBootTest(classes = { KitchenSinkTester.class, DatabaseEngine.class })
+@SpringBootTest(classes = { KitchenSinkTester.class, SQLDatabaseEngine.class })
 public class KitchenSinkTester {
 	@Autowired
-	private DatabaseEngine databaseEngine;
+	private SQLDatabaseEngine databaseEngine;
 	
 	@Test
 	public void testNotFound() throws Exception {
 		boolean thrown = false;
 		try {
-			this.databaseEngine.search("no");
+			this.databaseEngine.search("Thomas");
 		} catch (Exception e) {
 			thrown = true;
 		}
-		assertThat(thrown);
+		assertThat(thrown).isEqualTo(true);
 	}
 	
 	@Test
@@ -67,12 +68,12 @@ public class KitchenSinkTester {
 		boolean thrown = false;
 		String result = null;
 		try {
-			result = this.databaseEngine.search("abc");
+			result = this.databaseEngine.search("HKUST");
 		} catch (Exception e) {
 			thrown = true;
 		}
-		assertThat(!thrown);
-		assertThat(result.equals("def"));
+		assertThat(!thrown).isEqualTo(true);
+		assertThat(result).isEqualTo("Yeah");
 	}
 	
 	@Test
@@ -80,15 +81,12 @@ public class KitchenSinkTester {
 		boolean thrown = false;
 		String result = null;
 		try {
-			result = this.databaseEngine.search("Hi");
+			result = this.databaseEngine.search("Jerry");
 		} catch (Exception e) {
 			thrown = true;
 		}
 		assertThat(!thrown);
-		if (result != null) 
-		{
-			assertThat(result.equals("Hey, how things going?"));
-		}
+		assertThat(result).isEqualTo("Study Computer Science");
 	}
 	
 	@Test
@@ -96,14 +94,11 @@ public class KitchenSinkTester {
 		boolean thrown = false;
 		String result = null;
 		try {
-			result = this.databaseEngine.search("jxuat abc");
+			result = this.databaseEngine.search("I am Jerry");
 		} catch (Exception e) {
 			thrown = true;
 		}
 		assertThat(!thrown);
-		if (result != null) 
-		{
-			assertThat(result.equals("def"));
-		}
+		assertThat(result).isEqualTo("Study Computer Science");
 	}
 }
